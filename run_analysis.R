@@ -1,12 +1,15 @@
-#library(data.table)
+# Script to read data from the UCI HAR dataset and clean it
+
 # Read in variable names
 var.names <- read.table('features.txt', header=FALSE, stringsAsFactors=FALSE)
+# Add two variable names for Subject and Activity
 var.names <- cbind(t(var.names[,2]),"Subject","Activity")
 
 # Read in the training data, storing in a 7352 x 563 data frame
 train.files <- list.files(path='train',pattern='.txt',full.names=TRUE)
 data <- lapply(train.files, read.table)
 train.data <- data.frame(data[2],data[1],data[3])
+# Add our variable names as a header
 names(train.data) <- var.names
 
 # Read in the test data, storing in a 2947 x 563 data frame
@@ -23,8 +26,8 @@ rm(train.data, test.data)
 
 # Step 2
 # Extract only the information pertaining to the mean and standard deviation of each measurement (taken to mean those measurements with mean() or std() in the variable name
-std.cols <- grep('std()',names(all.data))  # returns column integers
-mean.cols <- grep('mean()', names(all.data)) # returns column integers
+std.cols <- grep('std()',names(all.data))  # returns column indices
+mean.cols <- grep('mean()', names(all.data)) # returns column indices
 # Add these two vectors together, and keep the "Subject" and "Activity" columns
 sm.cols <- sort(c(std.cols,mean.cols,562,563))
 # Select only the required columns
@@ -49,7 +52,7 @@ var.names.tmp <- gsub("std","Std",var.names.tmp)  #capitalise Std
 names(sm.data) <- var.names.tmp
 
 # Step 5
-# Collate the data
+# Collate the data using aggregate and the dot notation
 summary.data <- aggregate(. ~ Subject+Activity, data=sm.data, na.rm=TRUE, mean)
-
+# Write out the summary data
 write.table(summary.data, 'project.RData', sep=' ', row.name = FALSE)
