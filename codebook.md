@@ -2,7 +2,7 @@ Background
 ==========
 
 A cellphone equipped with an accelerometer was given to a number of participants ('Subject's) in a study on movement, related to health. Various measurements were taken by the accelerometer and recorded as a function of time and frequency.
-Participants were also asked to engage in a number of activities, such as walking or climbing stairs.
+Participants were asked to engage in, and make a note of, a number of activities, such as walking or climbing stairs.
 
 Raw data
 ========
