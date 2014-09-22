@@ -17,7 +17,7 @@ Code book
 - Subject and activity codes were added to this data frame as columns.
 - Column names were also added, using the original measurement labels from the raw data.
 - Using these column names, only the data pertaining to means or standard deviations were extracted, maintaining the original order, and the remaining accelerometer data was discarded.
-- Activity codes were replaced with descriptive strings
+- Activity codes were replaced with descriptive strings.
 - Column names were made more readable by removing punctuation; replacing f and t with 'freq' and 'time' to make the basis on which the data were sampled more clear; and capitalising new words in variable names.
 - At this point, the data was deemed 'clean'.
 - To aid understanding of the data, the mean of all columns was calculated, as a function of activity and subject.
